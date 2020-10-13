@@ -22,10 +22,7 @@ npm i dns-over-http-resolver
 const DnsOverHttpResolver = require('dns-over-http-resolver')
 ```
 
-Use Node.js' dns promises API if available.
-```js
-const { Resolver } = require('dns').promises || require('dns-over-http-resolver')
-```
+You can also use `require('dns').promises` in Node.js in lieu of this module.
 
 [Cloudflare](https://cloudflare-dns.com/dns-query) and [Google](https://dns.google/resolve) DNS servers are used by default. They can be replaced via the API. 
 
