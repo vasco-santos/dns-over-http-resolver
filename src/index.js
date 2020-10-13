@@ -3,7 +3,13 @@ const debug = require('debug')
 const log = debug('dns-over-http-resolver')
 log.error = debug('dns-over-http-resolver:error')
 
-const { buildResource, fetch } = require('./utils')
+const Cache = require('timed-cache')
+
+const {
+  buildResource,
+  fetch,
+  getCacheKey
+} = require('./utils')
 
 /**
  * DNS over HTTP resolver.
@@ -14,6 +20,7 @@ class Resolver {
    * @class
    */
   constructor () {
+    this._cache = new Cache()
     this._servers = [
       'https://cloudflare-dns.com/dns-query',
       'https://dns.google/resolve'
@@ -66,22 +73,33 @@ class Resolver {
    * @returns {Promise<Array<string>>}
    */
   async resolve4 (hostname) {
+    const recordType = 'A'
+    const cached = this._cache.get(getCacheKey(hostname, recordType))
+    if (cached) {
+      return cached
+    }
+
     for (const server of this._servers) {
       try {
         const response = await fetch(buildResource({
           serverResolver: server,
           hostname,
-          recordType: 'A'
+          recordType
         }))
 
         const d = await response.json()
-        return d.Answer.map(a => a.data)
+        const data = d.Answer.map(a => a.data)
+        const ttl = Math.min(d.Answer.map(a => a.TTL))
+
+        this._cache.put(getCacheKey(hostname, recordType), data, { ttl })
+
+        return data
       } catch (err) {
-        log.error(`${server} could not resolve ${hostname} record A`)
+        log.error(`${server} could not resolve ${hostname} record ${recordType}`)
       }
     }
 
-    throw new Error(`Could not resolve ${hostname} record A`)
+    throw new Error(`Could not resolve ${hostname} record ${recordType}`)
   }
 
   /**
@@ -91,22 +109,33 @@ class Resolver {
    * @returns {Promise<Array<string>>}
    */
   async resolve6 (hostname) {
+    const recordType = 'AAAA'
+    const cached = this._cache.get(getCacheKey(hostname, recordType))
+    if (cached) {
+      return cached
+    }
+
     for (const server of this._servers) {
       try {
         const response = await fetch(buildResource({
           serverResolver: server,
           hostname,
-          recordType: 'AAAA'
+          recordType
         }))
 
         const d = await response.json()
-        return d.Answer.map(a => a.data)
+        const data = d.Answer.map(a => a.data)
+        const ttl = Math.min(d.Answer.map(a => a.TTL))
+
+        this._cache.put(getCacheKey(hostname, recordType), data, { ttl })
+
+        return data
       } catch (err) {
-        log.error(`${server} could not resolve ${hostname} record AAAA`)
+        log.error(`${server} could not resolve ${hostname} record ${recordType}`)
       }
     }
 
-    throw new Error(`Could not resolve ${hostname} record AAAA`)
+    throw new Error(`Could not resolve ${hostname} record ${recordType}`)
   }
 
   /**
@@ -116,23 +145,33 @@ class Resolver {
    * @returns {Promise<Array<Array<string>>>}
    */
   async resolveTxt (hostname) {
+    const recordType = 'TXT'
+    const cached = this._cache.get(getCacheKey(hostname, recordType))
+    if (cached) {
+      return cached
+    }
+
     for (const server of this._servers) {
       try {
         const response = await fetch(buildResource({
           serverResolver: server,
           hostname,
-          recordType: 'TXT'
+          recordType
         }))
 
         const d = await response.json()
+        const data = d.Answer.map(a => [a.data.replace(/['"]+/g, '')])
+        const ttl = Math.min(d.Answer.map(a => a.TTL))
 
-        return d.Answer.map(a => [a.data.replace(/['"]+/g, '')])
+        this._cache.put(getCacheKey(hostname, recordType), data, { ttl })
+
+        return data
       } catch (err) {
-        log.error(`${server} could not resolve ${hostname} record TXT`)
+        log.error(`${server} could not resolve ${hostname} record ${recordType}`)
       }
     }
 
-    throw new Error(`Could not resolve ${hostname} record TXT`)
+    throw new Error(`Could not resolve ${hostname} record ${recordType}`)
   }
 }
 
