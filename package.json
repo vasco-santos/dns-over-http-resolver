@@ -1,6 +1,6 @@
 {
   "name": "dns-over-http-resolver",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "DNS over HTTP resolver",
   "main": "src/index.js",
   "author": "Vasco Santos",
@@ -40,5 +40,8 @@
   "dependencies": {
     "debug": "^4.2.0",
     "native-fetch": "^2.0.1"
-  }
+  },
+  "contributors": [
+    "Vasco Santos <vasco.santos@moxy.studio>"
+  ]
 }
