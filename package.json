@@ -39,7 +39,8 @@
   "homepage": "https://github.com/vasco-santos/dns-over-http-resolver#readme",
   "dependencies": {
     "debug": "^4.2.0",
-    "native-fetch": "^2.0.1"
+    "native-fetch": "^2.0.1",
+    "timed-cache": "^1.1.4"
   },
   "contributors": [
     "Vasco Santos <vasco.santos@moxy.studio>"
