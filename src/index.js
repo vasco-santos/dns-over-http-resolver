@@ -3,7 +3,7 @@ const debug = require('debug')
 const log = debug('dns-over-http-resolver')
 log.error = debug('dns-over-http-resolver:error')
 
-const Cache = require('timed-cache')
+const Receptacle = require('receptacle')
 
 const {
   buildResource,
@@ -18,9 +18,11 @@ const {
 class Resolver {
   /**
    * @class
+   * @param {object} [properties]
+   * @param {number} [properties.maxCache = 100] - maximum number of cached dns records.
    */
-  constructor () {
-    this._cache = new Cache()
+  constructor ({ maxCache = 100 } = {}) {
+    this._cache = new Receptacle({ max: maxCache })
     this._servers = [
       'https://cloudflare-dns.com/dns-query',
       'https://dns.google/resolve'
@@ -91,7 +93,7 @@ class Resolver {
         const data = d.Answer.map(a => a.data)
         const ttl = Math.min(d.Answer.map(a => a.TTL))
 
-        this._cache.put(getCacheKey(hostname, recordType), data, { ttl })
+        this._cache.set(getCacheKey(hostname, recordType), data, { ttl })
 
         return data
       } catch (err) {
@@ -127,7 +129,7 @@ class Resolver {
         const data = d.Answer.map(a => a.data)
         const ttl = Math.min(d.Answer.map(a => a.TTL))
 
-        this._cache.put(getCacheKey(hostname, recordType), data, { ttl })
+        this._cache.set(getCacheKey(hostname, recordType), data, { ttl })
 
         return data
       } catch (err) {
@@ -163,7 +165,7 @@ class Resolver {
         const data = d.Answer.map(a => [a.data.replace(/['"]+/g, '')])
         const ttl = Math.min(d.Answer.map(a => a.TTL))
 
-        this._cache.put(getCacheKey(hostname, recordType), data, { ttl })
+        this._cache.set(getCacheKey(hostname, recordType), data, { ttl })
 
         return data
       } catch (err) {

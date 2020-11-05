@@ -20,11 +20,21 @@ npm i dns-over-http-resolver
 
 ```js
 const DnsOverHttpResolver = require('dns-over-http-resolver')
+
+const dohResolver = new DnsOverHttpResolver(options)
 ```
+
+[Cloudflare](https://cloudflare-dns.com/dns-query) and [Google](https://dns.google/resolve) DNS servers are used by default. They can be replaced via the API. 
 
 You can also use `require('dns').promises` in Node.js in lieu of this module.
 
-[Cloudflare](https://cloudflare-dns.com/dns-query) and [Google](https://dns.google/resolve) DNS servers are used by default. They can be replaced via the API. 
+### options
+
+You can provide the following options for the DnsOverHttpResolver:
+
+| Name | Type | Description | Default |
+|------|------|-------------|---------|
+| maxCache | `number` | maximum number of cached dns records | 100 |
 
 ## API
 
