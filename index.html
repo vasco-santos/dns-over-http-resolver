@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset='utf-8'>
-  <title>dns-over-http-resolver 1.0.0 | Documentation</title>
+  <title>dns-over-http-resolver 1.1.0 | Documentation</title>
   <meta name='description' content='DNS over HTTP resolver'>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' rel='stylesheet'>
@@ -15,7 +15,7 @@
       <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
         <div class='py1 px2'>
           <h3 class='mb0 no-anchor'>dns-over-http-resolver</h3>
-          <div class='mb1'><code>1.0.0</code></div>
+          <div class='mb1'><code>1.1.0</code></div>
           <input
             placeholder='Filter'
             id='filter-input'
@@ -95,6 +95,26 @@
                 
                 </li>
               
+                
+                <li><a
+                  href='#fetch'
+                  class="">
+                  fetch
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#getcachekey'
+                  class="">
+                  getCacheKey
+                  
+                </a>
+                
+                </li>
+              
             </ul>
           </div>
           <div class='mt1 h6 quiet'>
@@ -115,7 +135,7 @@
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/dc1e19d32c3b12b9b6402238438df469272abfce/src/index.js#L12-L137'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/1d2180b25f84df00e50e7882c2c7d74245b8e963/src/index.js#L18-L178'>
       <span>src/index.js</span>
       </a>
     
@@ -125,7 +145,7 @@
   <p>DNS over HTTP resolver.
 Uses a list of servers to resolve DNS records with HTTP requests.</p>
 
-    <div class='pre p1 fill-light mt0'>new Resolver()</div>
+    <div class='pre p1 fill-light mt0'>new Resolver($0: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, properties: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>?)</div>
   
   
 
@@ -136,6 +156,54 @@ Uses a list of servers to resolve DNS records with HTTP requests.</p>
   
   
 
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>$0</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
+            = <code>{}</code>)</code>
+	    
+          </div>
+          
+          <table class='mt1 mb2 fixed-table h5 col-12'>
+            <colgroup>
+              <col width='30%' />
+              <col width='70%' />
+            </colgroup>
+            <thead>
+              <tr class='bold fill-light'>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody class='mt1'>
+              
+                <tr>
+  <td class='break-word'><span class='code bold'>$0.maxCache</span> <code class='quiet'>any</code>
+  
+    (default <code>100</code>)
+  </td>
+  <td class='break-word'><span></span></td>
+</tr>
+
+
+              
+            </tbody>
+          </table>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>properties</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>?)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
   
 
   
@@ -168,7 +236,7 @@ Uses a list of servers to resolve DNS records with HTTP requests.</p>
   <div class='clearfix'>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/dc1e19d32c3b12b9b6402238438df469272abfce/src/index.js#L29-L31'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/1d2180b25f84df00e50e7882c2c7d74245b8e963/src/index.js#L38-L40'>
       <span>src/index.js</span>
       </a>
     
@@ -235,7 +303,7 @@ These addresses are formatted according to RFC 5952. It can include a custom por
   <div class='clearfix'>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/dc1e19d32c3b12b9b6402238438df469272abfce/src/index.js#L38-L40'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/1d2180b25f84df00e50e7882c2c7d74245b8e963/src/index.js#L47-L49'>
       <span>src/index.js</span>
       </a>
     
@@ -307,7 +375,7 @@ These addresses are formatted according to RFC 5952. It can include a custom por
   <div class='clearfix'>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/dc1e19d32c3b12b9b6402238438df469272abfce/src/index.js#L49-L60'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/1d2180b25f84df00e50e7882c2c7d74245b8e963/src/index.js#L58-L69'>
       <span>src/index.js</span>
       </a>
     
@@ -397,7 +465,7 @@ These addresses are formatted according to RFC 5952. It can include a custom por
   <div class='clearfix'>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/dc1e19d32c3b12b9b6402238438df469272abfce/src/index.js#L68-L85'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/1d2180b25f84df00e50e7882c2c7d74245b8e963/src/index.js#L77-L105'>
       <span>src/index.js</span>
       </a>
     
@@ -477,7 +545,7 @@ These addresses are formatted according to RFC 5952. It can include a custom por
   <div class='clearfix'>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/dc1e19d32c3b12b9b6402238438df469272abfce/src/index.js#L93-L110'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/1d2180b25f84df00e50e7882c2c7d74245b8e963/src/index.js#L113-L141'>
       <span>src/index.js</span>
       </a>
     
@@ -557,7 +625,7 @@ These addresses are formatted according to RFC 5952. It can include a custom por
   <div class='clearfix'>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/dc1e19d32c3b12b9b6402238438df469272abfce/src/index.js#L118-L136'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/1d2180b25f84df00e50e7882c2c7d74245b8e963/src/index.js#L149-L177'>
       <span>src/index.js</span>
       </a>
     
@@ -645,7 +713,7 @@ These addresses are formatted according to RFC 5952. It can include a custom por
     </h3>
     
     
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/dc1e19d32c3b12b9b6402238438df469272abfce/src/utils.js#L14-L16'>
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/1d2180b25f84df00e50e7882c2c7d74245b8e963/src/utils.js#L14-L16'>
       <span>src/utils.js</span>
       </a>
     
@@ -714,6 +782,164 @@ These addresses are formatted according to RFC 5952. It can include a custom por
               
             </tbody>
           </table>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='fetch'>
+      fetch
+    </h3>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/1d2180b25f84df00e50e7882c2c7d74245b8e963/src/utils.js#L26-L32'>
+      <span>src/utils.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Use fetch to find the record.</p>
+
+    <div class='pre p1 fill-light mt0'>fetch(resource: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>resource</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code>
+	    
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></code>:
+        
+
+      
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='getcachekey'>
+      getCacheKey
+    </h3>
+    
+    
+      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/1d2180b25f84df00e50e7882c2c7d74245b8e963/src/utils.js#L43-L45'>
+      <span>src/utils.js</span>
+      </a>
+    
+  </div>
+  
+
+  <p>Creates cache key composed by recordType and hostname.</p>
+
+    <div class='pre p1 fill-light mt0'>getCacheKey(hostname: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, recordType: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>hostname</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    
+          </div>
+          
+        </div>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>recordType</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+	    
+          </div>
           
         </div>
       
