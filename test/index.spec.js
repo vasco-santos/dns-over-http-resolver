@@ -37,6 +37,23 @@ describe('dns-over-http-resolver', () => {
     expect(servers2[0]).to.eql(newServer)
   })
 
+  it('shuffles the available servers on resolve', async () => {
+    const hostname = 'google.com'
+    const recordType = 'A'
+
+    const stub = sinon.stub(...getFetchPair())
+    stub.returns(Promise.resolve({
+      json: () => ({
+        Question: [{ name: 'google.com', type: 1 }],
+        Answer: [{ name: 'google.com', type: 1, TTL: 285, data: '216.58.212.142' }]
+      })
+    }))
+
+    sinon.spy(resolver, '_getShuffledServers')
+    await resolver.resolve(hostname, recordType)
+    expect(resolver._getShuffledServers.callCount).to.eql(1)
+  })
+
   it('resolves a dns record of type A', async () => {
     const hostname = 'google.com'
     const recordType = 'A'
