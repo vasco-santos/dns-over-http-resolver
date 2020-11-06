@@ -40,6 +40,25 @@ class Resolver {
   }
 
   /**
+   * Get a shuffled array of the IP addresses currently configured for DNS resolution.
+   * These addresses are formatted according to RFC 5952. It can include a custom port.
+   *
+   * @returns {Array<string>}
+   */
+  _getShuffledServers () {
+    const newServers = [].concat(this._servers)
+
+    for (let i = newServers.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * i)
+      const temp = newServers[i]
+      newServers[i] = newServers[j]
+      newServers[j] = temp
+    }
+
+    return newServers
+  }
+
+  /**
    * Sets the IP address and port of servers to be used when performing DNS resolution.
    *
    * @param {Array<string>} servers - array of RFC 5952 formatted addresses.
@@ -81,7 +100,7 @@ class Resolver {
       return cached
     }
 
-    for (const server of this._servers) {
+    for (const server of this._getShuffledServers()) {
       try {
         const response = await fetch(buildResource({
           serverResolver: server,
@@ -117,7 +136,7 @@ class Resolver {
       return cached
     }
 
-    for (const server of this._servers) {
+    for (const server of this._getShuffledServers()) {
       try {
         const response = await fetch(buildResource({
           serverResolver: server,
@@ -153,7 +172,7 @@ class Resolver {
       return cached
     }
 
-    for (const server of this._servers) {
+    for (const server of this._getShuffledServers()) {
       try {
         const response = await fetch(buildResource({
           serverResolver: server,
