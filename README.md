@@ -171,6 +171,7 @@ const servers = resolver.getServers()
 ### setServers(servers)
 
 Sets the IP address and port of servers to be used when performing DNS resolution.
+Note that the servers order will be randomized on each request for load distribution.
 
 #### Parameters
 
