@@ -19,7 +19,7 @@
     "dist"
   ],
   "devDependencies": {
-    "aegir": "^27.0.0",
+    "aegir": "^28.1.0",
     "ipfs-utils": "^4.0.0",
     "sinon": "^9.2.0"
   },
