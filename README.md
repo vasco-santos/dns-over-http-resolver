@@ -4,6 +4,7 @@
 [![dependencies Status](https://david-dm.org/vasco-santos/dns-over-http-resolver/status.svg)](https://david-dm.org/vasco-santos/dns-over-http-resolver)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![Downloads](https://img.shields.io/npm/dm/dns-over-http-resolver.svg)](https://www.npmjs.com/package/dns-over-http-resolver)
+[![Minzipped size](https://badgen.net/bundlephobia/minzip/dns-over-http-resolver)](https://bundlephobia.com/result?p=dns-over-http-resolver)
 [![codecov](https://img.shields.io/codecov/c/github/vasco-santos/dns-over-http-resolver.svg?style=flat-square)](https://codecov.io/gh/vasco-santos/dns-over-http-resolver)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/vasco-santos/dns-over-http-resolver/ci?label=ci&style=flat-square)](https://github.com/vasco-santos/dns-over-http-resolver/actions?query=branch%3Amaster+workflow%3Aci+)
 
