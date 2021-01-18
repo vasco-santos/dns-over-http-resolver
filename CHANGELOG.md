@@ -1,3 +1,7 @@
+## [1.2.1](https://github.com/vasco-santos/dns-over-http-resolver/compare/v1.2.0...v1.2.1) (2021-01-18)
+
+
+
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/vasco-santos/dns-over-http-resolver/compare/v1.1.0...v1.2.0) (2020-11-09)
 
