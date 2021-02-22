@@ -1,6 +1,6 @@
 {
   "name": "dns-over-http-resolver",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "DNS over HTTP resolver",
   "main": "src/index.js",
   "author": "Vasco Santos",
