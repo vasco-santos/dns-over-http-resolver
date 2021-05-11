@@ -3,13 +3,12 @@
 /* eslint-env mocha */
 const { expect } = require('aegir/utils/chai')
 const sinon = require('sinon')
-const { default: nativeFetch } = require('native-fetch')
-const { isBrowser } = require('ipfs-utils/src/env')
+const utils = require('../src/utils')
 
 const DnsOverHttpResolver = require('../')
 
-const getFetchPair = () => isBrowser ? [window, 'fetch'] : [nativeFetch, 'Promise']
-const getFetch = () => isBrowser ? window.fetch : nativeFetch.Promise
+const getFetchPair = () => [utils, 'fetch']
+const getFetch = () => utils.fetch
 
 describe('dns-over-http-resolver', () => {
   let resolver
