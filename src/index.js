@@ -5,11 +5,7 @@ log.error = debug('dns-over-http-resolver:error')
 
 const Receptacle = require('receptacle')
 
-const {
-  buildResource,
-  fetch,
-  getCacheKey
-} = require('./utils')
+const utils = require('./utils')
 
 /**
  * DNS over HTTP resolver.
@@ -95,14 +91,14 @@ class Resolver {
    */
   async resolve4 (hostname) {
     const recordType = 'A'
-    const cached = this._cache.get(getCacheKey(hostname, recordType))
+    const cached = this._cache.get(utils.getCacheKey(hostname, recordType))
     if (cached) {
       return cached
     }
 
     for (const server of this._getShuffledServers()) {
       try {
-        const response = await fetch(buildResource({
+        const response = await utils.fetch(utils.buildResource({
           serverResolver: server,
           hostname,
           recordType
@@ -112,7 +108,7 @@ class Resolver {
         const data = d.Answer.map(a => a.data)
         const ttl = Math.min(d.Answer.map(a => a.TTL))
 
-        this._cache.set(getCacheKey(hostname, recordType), data, { ttl })
+        this._cache.set(utils.getCacheKey(hostname, recordType), data, { ttl })
 
         return data
       } catch (err) {
@@ -131,14 +127,14 @@ class Resolver {
    */
   async resolve6 (hostname) {
     const recordType = 'AAAA'
-    const cached = this._cache.get(getCacheKey(hostname, recordType))
+    const cached = this._cache.get(utils.getCacheKey(hostname, recordType))
     if (cached) {
       return cached
     }
 
     for (const server of this._getShuffledServers()) {
       try {
-        const response = await fetch(buildResource({
+        const response = await utils.fetch(utils.buildResource({
           serverResolver: server,
           hostname,
           recordType
@@ -148,7 +144,7 @@ class Resolver {
         const data = d.Answer.map(a => a.data)
         const ttl = Math.min(d.Answer.map(a => a.TTL))
 
-        this._cache.set(getCacheKey(hostname, recordType), data, { ttl })
+        this._cache.set(utils.getCacheKey(hostname, recordType), data, { ttl })
 
         return data
       } catch (err) {
@@ -167,14 +163,14 @@ class Resolver {
    */
   async resolveTxt (hostname) {
     const recordType = 'TXT'
-    const cached = this._cache.get(getCacheKey(hostname, recordType))
+    const cached = this._cache.get(utils.getCacheKey(hostname, recordType))
     if (cached) {
       return cached
     }
 
     for (const server of this._getShuffledServers()) {
       try {
-        const response = await fetch(buildResource({
+        const response = await utils.fetch(utils.buildResource({
           serverResolver: server,
           hostname,
           recordType
@@ -184,7 +180,7 @@ class Resolver {
         const data = d.Answer.map(a => [a.data.replace(/['"]+/g, '')])
         const ttl = Math.min(d.Answer.map(a => a.TTL))
 
-        this._cache.set(getCacheKey(hostname, recordType), data, { ttl })
+        this._cache.set(utils.getCacheKey(hostname, recordType), data, { ttl })
 
         return data
       } catch (err) {

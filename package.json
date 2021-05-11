@@ -20,7 +20,6 @@
   ],
   "devDependencies": {
     "aegir": "^33.1.0",
-    "ipfs-utils": "^8.0.0",
     "sinon": "^10.0.0",
     "util": "^0.12.3"
   },

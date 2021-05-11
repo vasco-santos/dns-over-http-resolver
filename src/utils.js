@@ -15,8 +15,6 @@ function buildResource ({ serverResolver, hostname, recordType }) {
   return `${serverResolver}?name=${hostname}&type=${recordType}`
 }
 
-module.exports.buildResource = buildResource
-
 /**
  * Use fetch to find the record.
  *
@@ -31,8 +29,6 @@ function fetch (resource) {
   })
 }
 
-module.exports.fetch = fetch
-
 /**
  * Creates cache key composed by recordType and hostname.
  *
@@ -44,4 +40,8 @@ function getCacheKey (hostname, recordType) {
   return `${recordType}_${hostname}`
 }
 
-module.exports.getCacheKey = getCacheKey
+module.exports = {
+  buildResource,
+  fetch,
+  getCacheKey
+}
