@@ -16,10 +16,6 @@ jobs:
     - run: npm run lint
     - run: npm run build
     - run: npm run dep-check
-    - uses: ipfs/aegir/actions/bundle-size@master
-      name: size
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
   test-node:
     needs: check
     runs-on: ${{ matrix.os }}
