@@ -1,3 +1,17 @@
+# [2.0.0](https://github.com/vasco-santos/dns-over-http-resolver/compare/v1.2.3...v2.0.0) (2021-12-14)
+
+
+### Features
+
+* convert to typescript ([#53](https://github.com/vasco-santos/dns-over-http-resolver/issues/53)) ([4eac9f6](https://github.com/vasco-santos/dns-over-http-resolver/commit/4eac9f61a7d8aa89848230f90c5cb3cfcc559647))
+
+
+### BREAKING CHANGES
+
+* ESM only publishing
+
+
+
 ## [1.2.3](https://github.com/vasco-santos/dns-over-http-resolver/compare/v1.2.2...v1.2.3) (2021-05-11)
 
 
