@@ -1,1057 +1,396 @@
 <!doctype html>
-<html lang="en">
+<html class="default no-js">
 <head>
-  <meta charset='utf-8'>
-  <title>dns-over-http-resolver 1.2.0 | Documentation</title>
-  <meta name='description' content='DNS over HTTP resolver'>
-  <meta name='viewport' content='width=device-width,initial-scale=1'>
-  <link href='assets/bass.css' rel='stylesheet'>
-  <link href='assets/style.css' rel='stylesheet'>
-  <link href='assets/github.css' rel='stylesheet'>
-  <link href='assets/split.css' rel='stylesheet'>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>dns-over-http-resolver - v2.0.0</title>
+	<meta name="description" content="Documentation for dns-over-http-resolver - v2.0.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
 </head>
-<body class='documentation m0'>
-    <div class='flex'>
-      <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
-        <div class='py1 px2'>
-          <h3 class='mb0 no-anchor'>dns-over-http-resolver</h3>
-          <div class='mb1'><code>1.2.0</code></div>
-          <input
-            placeholder='Filter'
-            id='filter-input'
-            class='col12 block input'
-            spellcheck='false'
-            autocapitalize='off'
-            autocorrect='off'
-            type='text' />
-          <div id='toc'>
-            <ul class='list-reset h5 py1-ul'>
-              
-                
-                <li><a
-                  href='#resolver'
-                  class=" toggle-sibling">
-                  Resolver
-                  <span class='icon'>▸</span>
-                </a>
-                
-                <div class='toggle-target display-none'>
-                  
-                  
-                    <ul class='list-reset py1-ul pl1'>
-                      <li class='h5'><span>Instance members</span></li>
-                      
-                      <li><a
-                        href='#resolvergetservers'
-                        class='regular pre-open'>
-                        #getServers
-                      </a></li>
-                      
-                      <li><a
-                        href='#resolver_getshuffledservers'
-                        class='regular pre-open'>
-                        #_getShuffledServers
-                      </a></li>
-                      
-                      <li><a
-                        href='#resolversetservers'
-                        class='regular pre-open'>
-                        #setServers
-                      </a></li>
-                      
-                      <li><a
-                        href='#resolverresolve'
-                        class='regular pre-open'>
-                        #resolve
-                      </a></li>
-                      
-                      <li><a
-                        href='#resolverresolve4'
-                        class='regular pre-open'>
-                        #resolve4
-                      </a></li>
-                      
-                      <li><a
-                        href='#resolverresolve6'
-                        class='regular pre-open'>
-                        #resolve6
-                      </a></li>
-                      
-                      <li><a
-                        href='#resolverresolvetxt'
-                        class='regular pre-open'>
-                        #resolveTxt
-                      </a></li>
-                      
-                    </ul>
-                  
-                  
-                  
-                </div>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#buildresource'
-                  class="">
-                  buildResource
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#fetch'
-                  class="">
-                  fetch
-                  
-                </a>
-                
-                </li>
-              
-                
-                <li><a
-                  href='#getcachekey'
-                  class="">
-                  getCacheKey
-                  
-                </a>
-                
-                </li>
-              
-            </ul>
-          </div>
-          <div class='mt1 h6 quiet'>
-            <a href='https://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
-          </div>
-        </div>
-      </div>
-      <div id='split-right' class='relative overflow-auto height-viewport-100'>
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='resolver'>
-      Resolver
-    </h3>
-    
-    
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/41830865eb54e81d99b8a31726fb7e4ef14f5016/src/index.js#L18-L197'>
-      <span>src/index.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>DNS over HTTP resolver.
-Uses a list of servers to resolve DNS records with HTTP requests.</p>
-
-    <div class='pre p1 fill-light mt0'>new Resolver($0: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>, properties: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>?)</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>$0</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>
-            = <code>{}</code>)</code>
-	    
-          </div>
-          
-          <table class='mt1 mb2 fixed-table h5 col-12'>
-            <colgroup>
-              <col width='30%' />
-              <col width='70%' />
-            </colgroup>
-            <thead>
-              <tr class='bold fill-light'>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody class='mt1'>
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>$0.maxCache</span> <code class='quiet'>any</code>
-  
-    (default <code>100</code>)
-  </td>
-  <td class='break-word'><span></span></td>
-</tr>
-
-
-              
-            </tbody>
-          </table>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>properties</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>?)</code>
-	    
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Instance Members</div>
-    <div class="clearfix">
-  
-    <div class='border-bottom' id='resolvergetservers'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>getServers()</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/41830865eb54e81d99b8a31726fb7e4ef14f5016/src/index.js#L38-L40'>
-      <span>src/index.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Get an array of the IP addresses currently configured for DNS resolution.
-These addresses are formatted according to RFC 5952. It can include a custom port.</p>
-
-    <div class='pre p1 fill-light mt0'>getServers(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>></div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>></code>:
-        
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='resolver_getshuffledservers'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>_getShuffledServers()</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/41830865eb54e81d99b8a31726fb7e4ef14f5016/src/index.js#L48-L59'>
-      <span>src/index.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Get a shuffled array of the IP addresses currently configured for DNS resolution.
-These addresses are formatted according to RFC 5952. It can include a custom port.</p>
-
-    <div class='pre p1 fill-light mt0'>_getShuffledServers(): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>></div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>></code>:
-        
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='resolversetservers'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>setServers(servers)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/41830865eb54e81d99b8a31726fb7e4ef14f5016/src/index.js#L66-L68'>
-      <span>src/index.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Sets the IP address and port of servers to be used when performing DNS resolution.</p>
-
-    <div class='pre p1 fill-light mt0'>setServers(servers: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>)</div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>servers</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>)</code>
-	    array of RFC 5952 formatted addresses.
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='resolverresolve'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>resolve(hostname, rrType)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/41830865eb54e81d99b8a31726fb7e4ef14f5016/src/index.js#L77-L88'>
-      <span>src/index.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Uses the DNS protocol to resolve the given host name into the appropriate DNS record.</p>
-
-    <div class='pre p1 fill-light mt0'>resolve(hostname: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, rrType: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;any></div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>hostname</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-	    host name to resolve.
-
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>rrType</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
-            = <code>&#39;A&#39;</code>)</code>
-	    resource record type.
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;any></code>:
-        
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='resolverresolve4'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>resolve4(hostname)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/41830865eb54e81d99b8a31726fb7e4ef14f5016/src/index.js#L96-L124'>
-      <span>src/index.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Uses the DNS protocol to resolve the given host name into IPv4 addresses.</p>
-
-    <div class='pre p1 fill-light mt0'>resolve4(hostname: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>></div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>hostname</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-	    host name to resolve.
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>></code>:
-        
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='resolverresolve6'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>resolve6(hostname)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/41830865eb54e81d99b8a31726fb7e4ef14f5016/src/index.js#L132-L160'>
-      <span>src/index.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Uses the DNS protocol to resolve the given host name into IPv6 addresses.</p>
-
-    <div class='pre p1 fill-light mt0'>resolve6(hostname: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>></div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>hostname</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-	    host name to resolve.
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>></code>:
-        
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
-    <div class='border-bottom' id='resolverresolvetxt'>
-      <div class="clearfix small pointer toggle-sibling">
-        <div class="py1 contain">
-            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
-            <span class='code strong strong truncate'>resolveTxt(hostname)</span>
-        </div>
-      </div>
-      <div class="clearfix display-none toggle-target">
-        <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/41830865eb54e81d99b8a31726fb7e4ef14f5016/src/index.js#L168-L196'>
-      <span>src/index.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Uses the DNS protocol to resolve the given host name into a Text record.</p>
-
-    <div class='pre p1 fill-light mt0'>resolveTxt(hostname: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>>></div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>hostname</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-	    host name to resolve.
-
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>>>></code>:
-        
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-      </div>
-    </div>
-  
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">dns-over-http-resolver - v2.0.0</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>dns-over-http-resolver - v2.0.0</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#dns-over-http-resolver" id="dns-over-http-resolver" style="color: inherit; text-decoration: none;">
+					<h1>dns-over-http-resolver</h1>
+				</a>
+				<p><a href="https://travis-ci.org/vasco-santos/dns-over-http-resolver"><img src="https://travis-ci.org/vasco-santos/dns-over-http-resolver.svg?branch=master" alt="Build Status"></a>
+					<a href="https://david-dm.org/vasco-santos/dns-over-http-resolver"><img src="https://david-dm.org/vasco-santos/dns-over-http-resolver/status.svg" alt="dependencies Status"></a>
+					<a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg" alt="JavaScript Style Guide"></a>
+					<a href="https://www.npmjs.com/package/dns-over-http-resolver"><img src="https://img.shields.io/npm/dm/dns-over-http-resolver.svg" alt="Downloads"></a>
+					<a href="https://bundlephobia.com/result?p=dns-over-http-resolver"><img src="https://badgen.net/bundlephobia/minzip/dns-over-http-resolver" alt="Minzipped size"></a>
+					<a href="https://codecov.io/gh/vasco-santos/dns-over-http-resolver"><img src="https://img.shields.io/codecov/c/github/vasco-santos/dns-over-http-resolver.svg?style=flat-square" alt="codecov"></a>
+				<a href="https://github.com/vasco-santos/dns-over-http-resolver/actions?query=branch%3Amaster+workflow%3Aci+"><img src="https://img.shields.io/github/workflow/status/vasco-santos/dns-over-http-resolver/ci?label=ci&style=flat-square" alt="GitHub Workflow Status"></a></p>
+				<blockquote>
+					<p>DNS over HTTP resolver</p>
+				</blockquote>
+				<p>Isomorphic DNS over HTTP resolver using fetch.</p>
+				<p>API based on <a href="https://nodejs.org/dist/latest-v14.x/docs/api/dns.html#dns_dns_promises_api">Node.js&#39; dns promises API</a>, allowing the native <code>dns</code> module to be used if available when relying on this API.</p>
+				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
+					<h2>Install</h2>
+				</a>
+				<pre><code class="language-sh"><span style="color: #000000">npm i dns-over-http-resolver</span>
+</code></pre>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">DnsOverHttpResolver</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;dns-over-http-resolver&#039;</span><span style="color: #000000">)</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">dohResolver</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">DnsOverHttpResolver</span><span style="color: #000000">(</span><span style="color: #001080">options</span><span style="color: #000000">)</span>
+</code></pre>
+				<p><a href="https://cloudflare-dns.com/dns-query">Cloudflare</a> and <a href="https://dns.google/resolve">Google</a> DNS servers are used by default. They can be replaced via the API. </p>
+				<p>You can also use <code>require(&#39;dns&#39;).promises</code> in Node.js in lieu of this module.</p>
+				<a href="#options" id="options" style="color: inherit; text-decoration: none;">
+					<h3>options</h3>
+				</a>
+				<p>You can provide the following options for the DnsOverHttpResolver:</p>
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Type</th>
+							<th>Description</th>
+							<th>Default</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>maxCache</td>
+							<td><code>number</code></td>
+							<td>maximum number of cached dns records</td>
+							<td>100</td>
+						</tr>
+				</tbody></table>
+				<a href="#api" id="api" style="color: inherit; text-decoration: none;">
+					<h2>API</h2>
+				</a>
+				<a href="#resolvehostname-rrtype" id="resolvehostname-rrtype" style="color: inherit; text-decoration: none;">
+					<h3>resolve(hostname, rrType)</h3>
+				</a>
+				<p>Uses the DNS protocol to resolve the given host name into a DNS record.</p>
+				<a href="#parameters" id="parameters" style="color: inherit; text-decoration: none;">
+					<h4>Parameters</h4>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>hostname</td>
+							<td><code>string</code></td>
+							<td>host name to resolve</td>
+						</tr>
+						<tr>
+							<td>[rrType]</td>
+							<td><code>string</code></td>
+							<td>resource record type (default: &#39;A&#39;)</td>
+						</tr>
+				</tbody></table>
+				<a href="#returns" id="returns" style="color: inherit; text-decoration: none;">
+					<h4>Returns</h4>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td><code>Promise&lt;Array&lt;string&gt;&gt;</code></td>
+							<td>returns a Promise resolving a DNS record according to its type</td>
+						</tr>
+				</tbody></table>
+				<a href="#example" id="example" style="color: inherit; text-decoration: none;">
+					<h4>Example</h4>
+				</a>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">DnsOverHttpResolver</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;dns-over-http-resolver&#039;</span><span style="color: #000000">)</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">resolver</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">DnsOverHttpResolver</span><span style="color: #000000">()</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">hostname</span><span style="color: #000000"> = </span><span style="color: #A31515">&#039;google.com&#039;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">recordType</span><span style="color: #000000"> = </span><span style="color: #A31515">&#039;TXT&#039;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">dnsRecord</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">resolver</span><span style="color: #000000">.</span><span style="color: #795E26">resolve</span><span style="color: #000000">(</span><span style="color: #001080">hostname</span><span style="color: #000000">, </span><span style="color: #001080">recordType</span><span style="color: #000000">)</span>
+</code></pre>
+				<a href="#resolve4hostname" id="resolve4hostname" style="color: inherit; text-decoration: none;">
+					<h3>resolve4(hostname)</h3>
+				</a>
+				<p>Uses the DNS protocol to resolve the given host name into IPv4 addresses.</p>
+				<a href="#parameters-1" id="parameters-1" style="color: inherit; text-decoration: none;">
+					<h4>Parameters</h4>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>hostname</td>
+							<td><code>string</code></td>
+							<td>host name to resolve</td>
+						</tr>
+				</tbody></table>
+				<a href="#returns-1" id="returns-1" style="color: inherit; text-decoration: none;">
+					<h4>Returns</h4>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td><code>Promise&lt;Array&lt;string&gt;&gt;</code></td>
+							<td>returns a Promise resolving IPv4 addresses</td>
+						</tr>
+				</tbody></table>
+				<a href="#example-1" id="example-1" style="color: inherit; text-decoration: none;">
+					<h4>Example</h4>
+				</a>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">DnsOverHttpResolver</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;dns-over-http-resolver&#039;</span><span style="color: #000000">)</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">resolver</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">DnsOverHttpResolver</span><span style="color: #000000">()</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">hostname</span><span style="color: #000000"> = </span><span style="color: #A31515">&#039;google.com&#039;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">address</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">resolver</span><span style="color: #000000">.</span><span style="color: #795E26">resolve4</span><span style="color: #000000">(</span><span style="color: #001080">hostname</span><span style="color: #000000">) </span><span style="color: #008000">// [&#039;216.58.212.142&#039;]</span>
+</code></pre>
+				<a href="#resolve6hostname" id="resolve6hostname" style="color: inherit; text-decoration: none;">
+					<h3>resolve6(hostname)</h3>
+				</a>
+				<p>Uses the DNS protocol to resolve the given host name into IPv6 addresses.</p>
+				<a href="#parameters-2" id="parameters-2" style="color: inherit; text-decoration: none;">
+					<h4>Parameters</h4>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>hostname</td>
+							<td><code>string</code></td>
+							<td>host name to resolve</td>
+						</tr>
+				</tbody></table>
+				<a href="#returns-2" id="returns-2" style="color: inherit; text-decoration: none;">
+					<h4>Returns</h4>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td><code>Promise&lt;Array&lt;string&gt;&gt;</code></td>
+							<td>returns a Promise resolving IPv6 addresses</td>
+						</tr>
+				</tbody></table>
+				<a href="#example-2" id="example-2" style="color: inherit; text-decoration: none;">
+					<h4>Example</h4>
+				</a>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">DnsOverHttpResolver</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;dns-over-http-resolver&#039;</span><span style="color: #000000">)</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">resolver</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">DnsOverHttpResolver</span><span style="color: #000000">()</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">hostname</span><span style="color: #000000"> = </span><span style="color: #A31515">&#039;google.com&#039;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">address</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">resolver</span><span style="color: #000000">.</span><span style="color: #795E26">resolve6</span><span style="color: #000000">(</span><span style="color: #001080">hostname</span><span style="color: #000000">) </span><span style="color: #008000">// [&#039;2a00:1450:4001:801::200e&#039;]</span>
+</code></pre>
+				<a href="#resolvetxthostname" id="resolvetxthostname" style="color: inherit; text-decoration: none;">
+					<h3>resolveTxt(hostname)</h3>
+				</a>
+				<p>Uses the DNS protocol to resolve the given host name into a Text Record.</p>
+				<a href="#parameters-3" id="parameters-3" style="color: inherit; text-decoration: none;">
+					<h4>Parameters</h4>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>hostname</td>
+							<td><code>string</code></td>
+							<td>host name to resolve</td>
+						</tr>
+				</tbody></table>
+				<a href="#returns-3" id="returns-3" style="color: inherit; text-decoration: none;">
+					<h4>Returns</h4>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td><code>Promise&lt;Array&lt;Array&lt;string&gt;&gt;&gt;</code></td>
+							<td>returns a Promise resolving a Text Record</td>
+						</tr>
+				</tbody></table>
+				<a href="#example-3" id="example-3" style="color: inherit; text-decoration: none;">
+					<h4>Example</h4>
+				</a>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">DnsOverHttpResolver</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;dns-over-http-resolver&#039;</span><span style="color: #000000">)</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">resolver</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">DnsOverHttpResolver</span><span style="color: #000000">()</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">hostname</span><span style="color: #000000"> = </span><span style="color: #A31515">&#039;google.com&#039;</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">address</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">resolver</span><span style="color: #000000">.</span><span style="color: #795E26">resolveTxt</span><span style="color: #000000">(</span><span style="color: #001080">hostname</span><span style="color: #000000">) </span><span style="color: #008000">// [[&#039;v=spf1 -all&#039;]]</span>
+</code></pre>
+				<a href="#getservers" id="getservers" style="color: inherit; text-decoration: none;">
+					<h3>getServers()</h3>
+				</a>
+				<p>Get an array of the IP addresses currently configured for DNS resolution.
+				These addresses are formatted according to RFC 5952. It can include a custom port.</p>
+				<a href="#returns-4" id="returns-4" style="color: inherit; text-decoration: none;">
+					<h4>Returns</h4>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td><code>Array&lt;string&gt;</code></td>
+							<td>returns array of DNS servers used</td>
+						</tr>
+				</tbody></table>
+				<a href="#example-4" id="example-4" style="color: inherit; text-decoration: none;">
+					<h4>Example</h4>
+				</a>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">DnsOverHttpResolver</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;dns-over-http-resolver&#039;</span><span style="color: #000000">)</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">resolver</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">DnsOverHttpResolver</span><span style="color: #000000">()</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">servers</span><span style="color: #000000"> = </span><span style="color: #001080">resolver</span><span style="color: #000000">.</span><span style="color: #795E26">getServers</span><span style="color: #000000">()</span>
+</code></pre>
+				<a href="#setserversservers" id="setserversservers" style="color: inherit; text-decoration: none;">
+					<h3>setServers(servers)</h3>
+				</a>
+				<p>Sets the IP address and port of servers to be used when performing DNS resolution.
+				Note that the servers order will be randomized on each request for load distribution.</p>
+				<a href="#parameters-4" id="parameters-4" style="color: inherit; text-decoration: none;">
+					<h4>Parameters</h4>
+				</a>
+				<table>
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Type</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>servers</td>
+							<td><code>Array&lt;string&gt;</code></td>
+							<td>Array of RFC 5952 formatted addresses.</td>
+						</tr>
+				</tbody></table>
+				<a href="#example-5" id="example-5" style="color: inherit; text-decoration: none;">
+					<h4>Example</h4>
+				</a>
+				<pre><code class="language-js"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">DnsOverHttpResolver</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;dns-over-http-resolver&#039;</span><span style="color: #000000">)</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">resolver</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">DnsOverHttpResolver</span><span style="color: #000000">()</span>
+<span style="color: #001080">resolver</span><span style="color: #000000">.</span><span style="color: #795E26">setServers</span><span style="color: #000000">([</span><span style="color: #A31515">&#039;https://cloudflare-dns.com/dns-query&#039;</span><span style="color: #000000">])</span>
+</code></pre>
+				<a href="#contribute" id="contribute" style="color: inherit; text-decoration: none;">
+					<h2>Contribute</h2>
+				</a>
+				<p>Feel free to dive in! <a href="https://github.com/vasco-santos/dns-over-http-resolver/issues/new">Open an issue</a> or submit PRs.</p>
+				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+					<h2>License</h2>
+				</a>
+				<p><a href="LICENSE">MIT</a> © Vasco Santos</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
 </div>
-
-  
-
-  
-
-  
-</section>
-
-          
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='buildresource'>
-      buildResource
-    </h3>
-    
-    
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/41830865eb54e81d99b8a31726fb7e4ef14f5016/src/utils.js#L14-L16'>
-      <span>src/utils.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Build fetch resource for request.</p>
-
-    <div class='pre p1 fill-light mt0'>buildResource(properties: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>properties</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code>
-	    
-          </div>
-          
-          <table class='mt1 mb2 fixed-table h5 col-12'>
-            <colgroup>
-              <col width='30%' />
-              <col width='70%' />
-            </colgroup>
-            <thead>
-              <tr class='bold fill-light'>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody class='mt1'>
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>properties.serverResolver</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span></span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>properties.hostname</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span></span></td>
-</tr>
-
-
-              
-                <tr>
-  <td class='break-word'><span class='code bold'>properties.recordType</span> <code class='quiet'><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>
-  </td>
-  <td class='break-word'><span></span></td>
-</tr>
-
-
-              
-            </tbody>
-          </table>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
-        
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-          
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='fetch'>
-      fetch
-    </h3>
-    
-    
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/41830865eb54e81d99b8a31726fb7e4ef14f5016/src/utils.js#L26-L32'>
-      <span>src/utils.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Use fetch to find the record.</p>
-
-    <div class='pre p1 fill-light mt0'>fetch(resource: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>resource</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">object</a>)</code>
-	    
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a></code>:
-        
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-          
-        
-          
-          <section class='p2 mb2 clearfix bg-white minishadow'>
-
-  
-  <div class='clearfix'>
-    
-    <h3 class='fl m0' id='getcachekey'>
-      getCacheKey
-    </h3>
-    
-    
-      <a class='fr fill-darken0 round round pad1x quiet h5' href='https://github.com/vasco-santos/dns-over-http-resolver/blob/41830865eb54e81d99b8a31726fb7e4ef14f5016/src/utils.js#L43-L45'>
-      <span>src/utils.js</span>
-      </a>
-    
-  </div>
-  
-
-  <p>Creates cache key composed by recordType and hostname.</p>
-
-    <div class='pre p1 fill-light mt0'>getCacheKey(hostname: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, recordType: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
-  
-  
-
-  
-  
-  
-  
-  
-  
-
-  
-    <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>hostname</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-	    
-          </div>
-          
-        </div>
-      
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>recordType</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-	    
-          </div>
-          
-        </div>
-      
-    </div>
-  
-
-  
-
-  
-    
-      <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
-        
-
-      
-    
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-</section>
-
-          
-        
-      </div>
-    </div>
-  <script src='assets/anchor.js'></script>
-  <script src='assets/split.js'></script>
-  <script src='assets/site.js'></script>
+<footer>
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+		</div>
+	</div>
+</footer>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
 </body>
 </html>
