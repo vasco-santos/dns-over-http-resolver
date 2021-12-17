@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "description": "DNS over HTTP resolver",
   "author": "Vasco Santos",
+  "types": "./dist/src/index.d.ts",
   "type": "module",
   "files": [
     "src",
