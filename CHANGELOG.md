@@ -1,3 +1,12 @@
+## [2.0.1](https://github.com/vasco-santos/dns-over-http-resolver/compare/v2.0.0...v2.0.1) (2021-12-17)
+
+
+### Bug Fixes
+
+* add types path to package.json ([#56](https://github.com/vasco-santos/dns-over-http-resolver/issues/56)) ([902408b](https://github.com/vasco-santos/dns-over-http-resolver/commit/902408b6005ddb5a92c364106abcda99db668339))
+
+
+
 # [2.0.0](https://github.com/vasco-santos/dns-over-http-resolver/compare/v1.2.3...v2.0.0) (2021-12-14)
 
 
