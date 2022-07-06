@@ -27,11 +27,12 @@ interface Answer {
 /**
  * Use fetch to find the record
  */
-export async function request (resource: string) {
+export async function request (resource: string, signal: AbortSignal) {
   const req = await nativeFetch(resource, {
     headers: new Headers({
       accept: 'application/dns-json'
-    })
+    }),
+    signal
   })
   const res = await req.json()
 

@@ -7,7 +7,7 @@ const log = Object.assign(debug('dns-over-http-resolver'), {
   error: debug('dns-over-http-resolver:error')
 })
 
-export interface Request { (resource: string): Promise<DNSJSON> }
+export interface Request { (resource: string, signal: AbortSignal): Promise<DNSJSON> }
 
 interface ResolverOptions {
   maxCache?: number
@@ -23,6 +23,7 @@ class Resolver {
   private readonly _TXTcache: Receptacle<string[][]>
   private _servers: string[]
   private readonly _request: Request
+  private _abortControllers: AbortController[]
 
   /**
    * @class
@@ -38,6 +39,15 @@ class Resolver {
       'https://dns.google/resolve'
     ]
     this._request = options.request ?? utils.request
+    this._abortControllers = []
+  }
+
+  /**
+   * Cancel all outstanding DNS queries made by this resolver. Any outstanding
+   * requests will be aborted and promises rejected.
+   */
+  cancel () {
+    this._abortControllers.forEach(controller => controller.abort())
   }
 
   /**
@@ -106,12 +116,15 @@ class Resolver {
     }
 
     for (const server of this._getShuffledServers()) {
+      const controller = new AbortController()
+      this._abortControllers.push(controller)
+
       try {
         const response = await this._request(utils.buildResource(
           server,
           hostname,
           recordType
-        ))
+        ), controller.signal)
 
         const data = response.Answer.map(a => a.data)
         const ttl = Math.min(...response.Answer.map(a => a.TTL))
@@ -121,6 +134,8 @@ class Resolver {
         return data
       } catch (err) {
         log.error(`${server} could not resolve ${hostname} record ${recordType}`)
+      } finally {
+        this._abortControllers = this._abortControllers.filter(c => c !== controller)
       }
     }
 
@@ -140,12 +155,15 @@ class Resolver {
     }
 
     for (const server of this._getShuffledServers()) {
+      const controller = new AbortController()
+      this._abortControllers.push(controller)
+
       try {
         const response = await this._request(utils.buildResource(
           server,
           hostname,
           recordType
-        ))
+        ), controller.signal)
 
         const data = response.Answer.map(a => a.data)
         const ttl = Math.min(...response.Answer.map(a => a.TTL))
@@ -155,6 +173,8 @@ class Resolver {
         return data
       } catch (err) {
         log.error(`${server} could not resolve ${hostname} record ${recordType}`)
+      } finally {
+        this._abortControllers = this._abortControllers.filter(c => c !== controller)
       }
     }
 
@@ -174,12 +194,15 @@ class Resolver {
     }
 
     for (const server of this._getShuffledServers()) {
+      const controller = new AbortController()
+      this._abortControllers.push(controller)
+
       try {
         const response = await this._request(utils.buildResource(
           server,
           hostname,
           recordType
-        ))
+        ), controller.signal)
 
         const data = response.Answer.map(a => [a.data.replace(/['"]+/g, '')])
         const ttl = Math.min(...response.Answer.map(a => a.TTL))
@@ -189,6 +212,8 @@ class Resolver {
         return data
       } catch (err) {
         log.error(`${server} could not resolve ${hostname} record ${recordType}`)
+      } finally {
+        this._abortControllers = this._abortControllers.filter(c => c !== controller)
       }
     }
 
