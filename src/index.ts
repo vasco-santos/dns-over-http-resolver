@@ -145,7 +145,7 @@ class Resolver {
     }
 
     if (aborted) {
-      throw Object.assign(new Error(`queryA ECANCELLED`), {
+      throw Object.assign(new Error('queryA ECANCELLED'), {
         code: 'ECANCELLED'
       })
     }
@@ -195,7 +195,7 @@ class Resolver {
     }
 
     if (aborted) {
-      throw Object.assign(new Error(`queryAaaa ECANCELLED`), {
+      throw Object.assign(new Error('queryAaaa ECANCELLED'), {
         code: 'ECANCELLED'
       })
     }
@@ -245,7 +245,7 @@ class Resolver {
     }
 
     if (aborted) {
-      throw Object.assign(new Error(`queryTxt ECANCELLED`), {
+      throw Object.assign(new Error('queryTxt ECANCELLED'), {
         code: 'ECANCELLED'
       })
     }
