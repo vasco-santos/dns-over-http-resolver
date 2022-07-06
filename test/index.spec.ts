@@ -281,7 +281,7 @@ describe('dns-over-http-resolver', () => {
 
     resolver.cancel()
 
-    await expect(resolvePromise).to.eventually.be.rejected()
+    await expect(resolvePromise).to.eventually.be.rejected.with.property('code', 'ECANCELLED')
 
     expect(resolver).to.have.property('_abortControllers').that.is.empty('Did not remove abortcontroller after aborting')
   })

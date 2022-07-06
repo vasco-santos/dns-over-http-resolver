@@ -114,6 +114,7 @@ class Resolver {
     if (cached != null) {
       return cached
     }
+    let aborted = false
 
     for (const server of this._getShuffledServers()) {
       const controller = new AbortController()
@@ -133,10 +134,20 @@ class Resolver {
 
         return data
       } catch (err) {
+        if (controller.signal.aborted) {
+          aborted = true
+        }
+
         log.error(`${server} could not resolve ${hostname} record ${recordType}`)
       } finally {
         this._abortControllers = this._abortControllers.filter(c => c !== controller)
       }
+    }
+
+    if (aborted) {
+      throw Object.assign(new Error(`queryA ECANCELLED`), {
+        code: 'ECANCELLED'
+      })
     }
 
     throw new Error(`Could not resolve ${hostname} record ${recordType}`)
@@ -153,6 +164,7 @@ class Resolver {
     if (cached != null) {
       return cached
     }
+    let aborted = false
 
     for (const server of this._getShuffledServers()) {
       const controller = new AbortController()
@@ -172,10 +184,20 @@ class Resolver {
 
         return data
       } catch (err) {
+        if (controller.signal.aborted) {
+          aborted = true
+        }
+
         log.error(`${server} could not resolve ${hostname} record ${recordType}`)
       } finally {
         this._abortControllers = this._abortControllers.filter(c => c !== controller)
       }
+    }
+
+    if (aborted) {
+      throw Object.assign(new Error(`queryAaaa ECANCELLED`), {
+        code: 'ECANCELLED'
+      })
     }
 
     throw new Error(`Could not resolve ${hostname} record ${recordType}`)
@@ -192,6 +214,7 @@ class Resolver {
     if (cached != null) {
       return cached
     }
+    let aborted = false
 
     for (const server of this._getShuffledServers()) {
       const controller = new AbortController()
@@ -211,10 +234,20 @@ class Resolver {
 
         return data
       } catch (err) {
+        if (controller.signal.aborted) {
+          aborted = true
+        }
+
         log.error(`${server} could not resolve ${hostname} record ${recordType}`)
       } finally {
         this._abortControllers = this._abortControllers.filter(c => c !== controller)
       }
+    }
+
+    if (aborted) {
+      throw Object.assign(new Error(`queryTxt ECANCELLED`), {
+        code: 'ECANCELLED'
+      })
     }
 
     throw new Error(`Could not resolve ${hostname} record ${recordType}`)
