@@ -1,24 +1,51 @@
-# dns-over-http-resolver
+# dns-over-http-resolver <!-- omit in toc -->
 
-[![Build Status](https://travis-ci.org/vasco-santos/dns-over-http-resolver.svg?branch=master)](https://travis-ci.org/vasco-santos/dns-over-http-resolver)
-[![dependencies Status](https://david-dm.org/vasco-santos/dns-over-http-resolver/status.svg)](https://david-dm.org/vasco-santos/dns-over-http-resolver)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-[![Downloads](https://img.shields.io/npm/dm/dns-over-http-resolver.svg)](https://www.npmjs.com/package/dns-over-http-resolver)
-[![Minzipped size](https://badgen.net/bundlephobia/minzip/dns-over-http-resolver)](https://bundlephobia.com/result?p=dns-over-http-resolver)
-[![codecov](https://img.shields.io/codecov/c/github/vasco-santos/dns-over-http-resolver.svg?style=flat-square)](https://codecov.io/gh/vasco-santos/dns-over-http-resolver)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/vasco-santos/dns-over-http-resolver/ci?label=ci&style=flat-square)](https://github.com/vasco-santos/dns-over-http-resolver/actions?query=branch%3Amaster+workflow%3Aci+)
+[![codecov](https://img.shields.io/codecov/c/github/achingbrain/dns-over-http-resolver.svg?style=flat-square)](https://codecov.io/gh/achingbrain/dns-over-http-resolver)
+[![CI](https://img.shields.io/github/workflow/status/libp2p/js-libp2p-interfaces/test%20&%20maybe%20release/main?style=flat-square)](https://github.com/achingbrain/dns-over-http-resolver/actions/workflows/js-test-and-release.yml)
 
 > DNS over HTTP resolver
+
+## Table of contents <!-- omit in toc -->
+
+- [Install](#install)
+- [Usage](#usage)
+  - [options](#options)
+- [API](#api)
+  - [resolve(hostname, rrType)](#resolvehostname-rrtype)
+    - [Parameters](#parameters)
+    - [Returns](#returns)
+    - [Example](#example)
+  - [resolve4(hostname)](#resolve4hostname)
+    - [Parameters](#parameters-1)
+    - [Returns](#returns-1)
+    - [Example](#example-1)
+  - [resolve6(hostname)](#resolve6hostname)
+    - [Parameters](#parameters-2)
+    - [Returns](#returns-2)
+    - [Example](#example-2)
+  - [resolveTxt(hostname)](#resolvetxthostname)
+    - [Parameters](#parameters-3)
+    - [Returns](#returns-3)
+    - [Example](#example-3)
+  - [getServers()](#getservers)
+    - [Returns](#returns-4)
+    - [Example](#example-4)
+  - [setServers(servers)](#setserversservers)
+    - [Parameters](#parameters-4)
+    - [Example](#example-5)
+- [Contribute](#contribute)
+- [License](#license)
+- [Contribution](#contribution)
+
+## Install
+
+```console
+$ npm i dns-over-http-resolver
+```
 
 Isomorphic DNS over HTTP resolver using fetch.
 
 API based on [Node.js' dns promises API](https://nodejs.org/dist/latest-v14.x/docs/api/dns.html#dns_dns_promises_api), allowing the native `dns` module to be used if available when relying on this API.
-
-## Install
-
-```sh
-npm i dns-over-http-resolver
-```
 
 ## Usage
 
@@ -28,7 +55,7 @@ const DnsOverHttpResolver = require('dns-over-http-resolver')
 const dohResolver = new DnsOverHttpResolver(options)
 ```
 
-[Cloudflare](https://cloudflare-dns.com/dns-query) and [Google](https://dns.google/resolve) DNS servers are used by default. They can be replaced via the API. 
+[Cloudflare](https://cloudflare-dns.com/dns-query) and [Google](https://dns.google/resolve) DNS servers are used by default. They can be replaced via the API.
 
 You can also use `require('dns').promises` in Node.js in lieu of this module.
 
@@ -36,9 +63,9 @@ You can also use `require('dns').promises` in Node.js in lieu of this module.
 
 You can provide the following options for the DnsOverHttpResolver:
 
-| Name | Type | Description | Default |
-|------|------|-------------|---------|
-| maxCache | `number` | maximum number of cached dns records | 100 |
+| Name     | Type     | Description                          | Default |
+| -------- | -------- | ------------------------------------ | ------- |
+| maxCache | `number` | maximum number of cached dns records | 100     |
 
 ## API
 
@@ -48,15 +75,15 @@ Uses the DNS protocol to resolve the given host name into a DNS record.
 
 #### Parameters
 
-| Name | Type | Description |
-|------|------|-------------|
-| hostname | `string` | host name to resolve |
-| [rrType] | `string` | resource record type (default: 'A') |
+| Name      | Type     | Description                         |
+| --------- | -------- | ----------------------------------- |
+| hostname  | `string` | host name to resolve                |
+| \[rrType] | `string` | resource record type (default: 'A') |
 
 #### Returns
 
-| Type | Description |
-|------|-------------|
+| Type                     | Description                                                    |
+| ------------------------ | -------------------------------------------------------------- |
 | `Promise<Array<string>>` | returns a Promise resolving a DNS record according to its type |
 
 #### Example
@@ -77,14 +104,14 @@ Uses the DNS protocol to resolve the given host name into IPv4 addresses.
 
 #### Parameters
 
-| Name | Type | Description |
-|------|------|-------------|
+| Name     | Type     | Description          |
+| -------- | -------- | -------------------- |
 | hostname | `string` | host name to resolve |
 
 #### Returns
 
-| Type | Description |
-|------|-------------|
+| Type                     | Description                                |
+| ------------------------ | ------------------------------------------ |
 | `Promise<Array<string>>` | returns a Promise resolving IPv4 addresses |
 
 #### Example
@@ -104,14 +131,14 @@ Uses the DNS protocol to resolve the given host name into IPv6 addresses.
 
 #### Parameters
 
-| Name | Type | Description |
-|------|------|-------------|
+| Name     | Type     | Description          |
+| -------- | -------- | -------------------- |
 | hostname | `string` | host name to resolve |
 
 #### Returns
 
-| Type | Description |
-|------|-------------|
+| Type                     | Description                                |
+| ------------------------ | ------------------------------------------ |
 | `Promise<Array<string>>` | returns a Promise resolving IPv6 addresses |
 
 #### Example
@@ -131,14 +158,14 @@ Uses the DNS protocol to resolve the given host name into a Text Record.
 
 #### Parameters
 
-| Name | Type | Description |
-|------|------|-------------|
+| Name     | Type     | Description          |
+| -------- | -------- | -------------------- |
 | hostname | `string` | host name to resolve |
 
 #### Returns
 
-| Type | Description |
-|------|-------------|
+| Type                            | Description                               |
+| ------------------------------- | ----------------------------------------- |
 | `Promise<Array<Array<string>>>` | returns a Promise resolving a Text Record |
 
 #### Example
@@ -159,8 +186,8 @@ These addresses are formatted according to RFC 5952. It can include a custom por
 
 #### Returns
 
-| Type | Description |
-|------|-------------|
+| Type            | Description                       |
+| --------------- | --------------------------------- |
 | `Array<string>` | returns array of DNS servers used |
 
 #### Example
@@ -179,8 +206,8 @@ Note that the servers order will be randomized on each request for load distribu
 
 #### Parameters
 
-| Name | Type | Description |
-|------|------|-------------|
+| Name    | Type            | Description                            |
+| ------- | --------------- | -------------------------------------- |
 | servers | `Array<string>` | Array of RFC 5952 formatted addresses. |
 
 #### Example
@@ -198,4 +225,11 @@ Feel free to dive in! [Open an issue](https://github.com/vasco-santos/dns-over-h
 
 ## License
 
-[MIT](LICENSE) © Vasco Santos
+Licensed under either of
+
+- Apache 2.0, ([LICENSE-APACHE](LICENSE-APACHE) / <http://www.apache.org/licenses/LICENSE-2.0>)
+- MIT ([LICENSE-MIT](LICENSE-MIT) / <http://opensource.org/licenses/MIT>)
+
+## Contribution
+
+Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in the work by you, as defined in the Apache-2.0 license, shall be dual licensed as above, without any additional terms or conditions.
