@@ -1,3 +1,15 @@
+## [2.1.0](https://github.com/vasco-santos/dns-over-http-resolver/compare/v2.0.2...v2.1.0) (2022-07-07)
+
+
+### Features
+
+* allow aborting DNS requests ([#71](https://github.com/vasco-santos/dns-over-http-resolver/issues/71)) ([a37e8de](https://github.com/vasco-santos/dns-over-http-resolver/commit/a37e8debadf93972b5c268d67360ed046a312387))
+
+
+### Trivial Changes
+
+* **deps-dev:** bump sinon from 13.0.2 to 14.0.0 ([#64](https://github.com/vasco-santos/dns-over-http-resolver/issues/64)) ([cb45791](https://github.com/vasco-santos/dns-over-http-resolver/commit/cb457915d3447516655b4ee6cabae3a29f060d17))
+
 ## [2.0.2](https://github.com/vasco-santos/dns-over-http-resolver/compare/v2.0.1...v2.0.2) (2022-07-07)
 
 
