@@ -4,13 +4,13 @@
   "description": "DNS over HTTP resolver",
   "author": "Vasco Santos",
   "license": "Apache-2.0 OR MIT",
-  "homepage": "https://github.com/achingbrain/dns-over-http-resolver#readme",
+  "homepage": "https://github.com/vasco-santos/dns-over-http-resolver#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/achingbrain/dns-over-http-resolver.git"
+    "url": "git+https://github.com/vasco-santos/dns-over-http-resolver.git"
   },
   "bugs": {
-    "url": "https://github.com/achingbrain/dns-over-http-resolver/issues"
+    "url": "https://github.com/vasco-santos/dns-over-http-resolver/issues"
   },
   "keywords": [
     "dns",
