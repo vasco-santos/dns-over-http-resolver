@@ -260,4 +260,29 @@ describe('dns-over-http-resolver', () => {
     expect(response).to.exist()
     expect(response).to.deep.equal(['216.58.212.142'])
   })
+
+  it('cancels an in-flight DNS request', async () => {
+    const hostname = 'example.com'
+
+    const request = async (host: string, signal: AbortSignal) => {
+      return await new Promise<DNSJSON>((resolve, reject) => {
+        signal.addEventListener('abort', () => {
+          reject(new Error('aborted'))
+        })
+      })
+    }
+
+    resolver = new DnsOverHttpResolver({ request })
+    resolver.setServers(['https://dns.google/resolve'])
+
+    const resolvePromise = resolver.resolve(hostname)
+
+    expect(resolver).to.have.property('_abortControllers').that.is.not.empty('Did not store abortcontroller')
+
+    resolver.cancel()
+
+    await expect(resolvePromise).to.eventually.be.rejected.with.property('code', 'ECANCELLED')
+
+    expect(resolver).to.have.property('_abortControllers').that.is.empty('Did not remove abortcontroller after aborting')
+  })
 })
