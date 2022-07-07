@@ -1,5 +1,5 @@
 /* eslint-env mocha */
-import { expect } from 'aegir/utils/chai.js'
+import { expect } from 'aegir/chai'
 // import * as utils from '../src/utils.js'
 import DnsOverHttpResolver from '../src/index.js'
 import type { DNSJSON } from '../src/utils.js'
