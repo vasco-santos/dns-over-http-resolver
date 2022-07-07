@@ -1,7 +1,7 @@
 # dns-over-http-resolver <!-- omit in toc -->
 
-[![codecov](https://img.shields.io/codecov/c/github/achingbrain/dns-over-http-resolver.svg?style=flat-square)](https://codecov.io/gh/achingbrain/dns-over-http-resolver)
-[![CI](https://img.shields.io/github/workflow/status/libp2p/js-libp2p-interfaces/test%20&%20maybe%20release/main?style=flat-square)](https://github.com/achingbrain/dns-over-http-resolver/actions/workflows/js-test-and-release.yml)
+[![codecov](https://img.shields.io/codecov/c/github/vasco-santos/dns-over-http-resolver.svg?style=flat-square)](https://codecov.io/gh/vasco-santos/dns-over-http-resolver)
+[![CI](https://img.shields.io/github/workflow/status/libp2p/js-libp2p-interfaces/test%20&%20maybe%20release/main?style=flat-square)](https://github.com/vasco-santos/dns-over-http-resolver/actions/workflows/js-test-and-release.yml)
 
 > DNS over HTTP resolver
 
