@@ -1,3 +1,10 @@
+## [2.1.1](https://github.com/vasco-santos/dns-over-http-resolver/compare/v2.1.0...v2.1.1) (2022-11-23)
+
+
+### Bug Fixes
+
+* add `undici` to satisfy peer dep requirements ([#78](https://github.com/vasco-santos/dns-over-http-resolver/issues/78)) ([cf7a941](https://github.com/vasco-santos/dns-over-http-resolver/commit/cf7a94180ea604261f367f4742e9111b5503c7ff)), closes [#44](https://github.com/vasco-santos/dns-over-http-resolver/issues/44)
+
 ## [2.1.0](https://github.com/vasco-santos/dns-over-http-resolver/compare/v2.0.2...v2.1.0) (2022-07-07)
 
 
