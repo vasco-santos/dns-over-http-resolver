@@ -144,7 +144,7 @@
   },
   "devDependencies": {
     "@types/debug": "^4.1.7",
-    "aegir": "^37.4.4",
+    "aegir": "^38.1.2",
     "sinon": "^14.0.0",
     "ts-sinon": "^2.0.2",
     "util": "^0.12.3"
