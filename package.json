@@ -1,6 +1,6 @@
 {
   "name": "dns-over-http-resolver",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "DNS over HTTP resolver",
   "author": "Vasco Santos",
   "license": "Apache-2.0 OR MIT",

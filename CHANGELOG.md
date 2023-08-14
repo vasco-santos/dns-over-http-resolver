@@ -1,3 +1,11 @@
+## [2.1.2](https://github.com/vasco-santos/dns-over-http-resolver/compare/v2.1.1...v2.1.2) (2023-08-14)
+
+
+### Trivial Changes
+
+* add or force update .github/workflows/js-test-and-release.yml ([#98](https://github.com/vasco-santos/dns-over-http-resolver/issues/98)) ([7147501](https://github.com/vasco-santos/dns-over-http-resolver/commit/7147501e96b4dda1706a99f90053c5cff9061d2a))
+* delete templates [skip ci] ([#97](https://github.com/vasco-santos/dns-over-http-resolver/issues/97)) ([f3f9a24](https://github.com/vasco-santos/dns-over-http-resolver/commit/f3f9a2478da00cdc28cacb2df12cbc453358a1bb))
+
 ## [2.1.1](https://github.com/vasco-santos/dns-over-http-resolver/compare/v2.1.0...v2.1.1) (2022-11-23)
 
 
