@@ -1,3 +1,15 @@
+## [2.1.3](https://github.com/vasco-santos/dns-over-http-resolver/compare/v2.1.2...v2.1.3) (2023-10-26)
+
+
+### Bug Fixes
+
+* specify correct return type from `resolve` ([#101](https://github.com/vasco-santos/dns-over-http-resolver/issues/101)) ([6dd2bd8](https://github.com/vasco-santos/dns-over-http-resolver/commit/6dd2bd89a8ea900adfee47cea52a0a638fe768cb))
+
+
+### Dependencies
+
+* **dev:** bump sinon from 14.0.2 to 17.0.0 ([#100](https://github.com/vasco-santos/dns-over-http-resolver/issues/100)) ([f946dcb](https://github.com/vasco-santos/dns-over-http-resolver/commit/f946dcb278bbf9555b6d6dd0fee23241c961db2a))
+
 ## [2.1.2](https://github.com/vasco-santos/dns-over-http-resolver/compare/v2.1.1...v2.1.2) (2023-08-14)
 
 
