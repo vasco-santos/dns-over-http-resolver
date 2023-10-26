@@ -1,4 +1,5 @@
 /* eslint-env mocha */
+
 import { expect } from 'aegir/chai'
 import sinon from 'sinon'
 import DnsOverHttpResolver from '../src/index.js'
@@ -260,12 +261,13 @@ describe('dns-over-http-resolver', () => {
   it('cancels an in-flight DNS request', async () => {
     const hostname = 'example.com'
 
-    const request = async (host: string, signal: AbortSignal): Promise<DNSJSON> => new Promise<DNSJSON>((
-      _resolve, reject) => {
-      signal.addEventListener('abort', () => {
-        reject(new Error('aborted'))
+    const request = async (host: string, signal: AbortSignal): Promise<DNSJSON> => {
+      return new Promise<DNSJSON>((resolve, reject) => {
+        signal.addEventListener('abort', () => {
+          reject(new Error('aborted'))
+        })
       })
-    })
+    }
 
     resolver = new DnsOverHttpResolver({ request })
     resolver.setServers(['https://dns.google/resolve'])

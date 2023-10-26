@@ -90,7 +90,10 @@ class Resolver {
    * @param {string} hostname - host name to resolve
    * @param {string} [rrType = 'A'] - resource record type
    */
-  async resolve (hostname: string, rrType = 'A'): Promise<string[] | string[][]> {
+  async resolve (hostname: string, rrType: 'TXT'): Promise<string[][]>
+  async resolve (hostname: string, rrType: 'A' | 'AAAA'): Promise<string[]>
+  async resolve (hostname: string): Promise<string[]>
+  async resolve (hostname: string, rrType: string = 'A'): Promise<string[] | string[][]> {
     switch (rrType) {
       case 'A':
         return this.resolve4(hostname)
