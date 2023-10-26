@@ -1,13 +1,10 @@
 /* eslint-env mocha */
+
 import { expect } from 'aegir/chai'
-// import * as utils from '../src/utils.js'
 import sinon from 'sinon'
 import DnsOverHttpResolver from '../src/index.js'
 import type { DNSJSON } from '../src/utils.js'
 import type { SinonStub } from 'sinon'
-
-// const getFetchPair = () => [utils, 'fetch']
-// const getFetch = () => utils.fetch
 
 describe('dns-over-http-resolver', () => {
   let resolver: DnsOverHttpResolver
