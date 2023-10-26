@@ -46,15 +46,15 @@ class Resolver {
    * Cancel all outstanding DNS queries made by this resolver. Any outstanding
    * requests will be aborted and promises rejected.
    */
-  cancel () {
-    this._abortControllers.forEach(controller => controller.abort())
+  cancel (): void {
+    this._abortControllers.forEach(controller => { controller.abort() })
   }
 
   /**
    * Get an array of the IP addresses currently configured for DNS resolution.
    * These addresses are formatted according to RFC 5952. It can include a custom port.
    */
-  getServers () {
+  getServers (): string[] {
     return this._servers
   }
 
@@ -62,7 +62,7 @@ class Resolver {
    * Get a shuffled array of the IP addresses currently configured for DNS resolution.
    * These addresses are formatted according to RFC 5952. It can include a custom port.
    */
-  _getShuffledServers () {
+  _getShuffledServers (): string[] {
     const newServers = [...this._servers]
 
     for (let i = newServers.length - 1; i > 0; i--) {
@@ -80,7 +80,7 @@ class Resolver {
    *
    * @param {string[]} servers - array of RFC 5952 formatted addresses.
    */
-  setServers (servers: string[]) {
+  setServers (servers: string[]): void {
     this._servers = servers
   }
 
@@ -90,14 +90,14 @@ class Resolver {
    * @param {string} hostname - host name to resolve
    * @param {string} [rrType = 'A'] - resource record type
    */
-  async resolve (hostname: string, rrType = 'A') {
+  async resolve (hostname: string, rrType = 'A'): Promise<string[] | string[][]> {
     switch (rrType) {
       case 'A':
-        return await this.resolve4(hostname)
+        return this.resolve4(hostname)
       case 'AAAA':
-        return await this.resolve6(hostname)
+        return this.resolve6(hostname)
       case 'TXT':
-        return await this.resolveTxt(hostname)
+        return this.resolveTxt(hostname)
       default:
         throw new Error(`${rrType} is not supported`)
     }
@@ -108,7 +108,7 @@ class Resolver {
    *
    * @param {string} hostname - host name to resolve
    */
-  async resolve4 (hostname: string) {
+  async resolve4 (hostname: string): Promise<string[]> {
     const recordType = 'A'
     const cached = this._cache.get(utils.getCacheKey(hostname, recordType))
     if (cached != null) {
@@ -158,7 +158,7 @@ class Resolver {
    *
    * @param {string} hostname - host name to resolve
    */
-  async resolve6 (hostname: string) {
+  async resolve6 (hostname: string): Promise<string[]> {
     const recordType = 'AAAA'
     const cached = this._cache.get(utils.getCacheKey(hostname, recordType))
     if (cached != null) {
@@ -208,7 +208,7 @@ class Resolver {
    *
    * @param {string} hostname - host name to resolve
    */
-  async resolveTxt (hostname: string) {
+  async resolveTxt (hostname: string): Promise<string[][]> {
     const recordType = 'TXT'
     const cached = this._TXTcache.get(utils.getCacheKey(hostname, recordType))
     if (cached != null) {
@@ -253,7 +253,7 @@ class Resolver {
     throw new Error(`Could not resolve ${hostname} record ${recordType}`)
   }
 
-  clearCache () {
+  clearCache (): void {
     this._cache.clear()
     this._TXTcache.clear()
   }

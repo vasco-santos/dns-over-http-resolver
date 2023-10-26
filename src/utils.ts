@@ -3,7 +3,7 @@ import { fetch as nativeFetch, Headers } from 'native-fetch'
 /**
  * Build fetch resource for request
  */
-export function buildResource (serverResolver: string, hostname: string, recordType: string) {
+export function buildResource (serverResolver: string, hostname: string, recordType: string): string {
   return `${serverResolver}?name=${hostname}&type=${recordType}`
 }
 
@@ -27,7 +27,7 @@ interface Answer {
 /**
  * Use fetch to find the record
  */
-export async function request (resource: string, signal: AbortSignal) {
+export async function request (resource: string, signal: AbortSignal): Promise<DNSJSON> {
   const req = await nativeFetch(resource, {
     headers: new Headers({
       accept: 'application/dns-json'
@@ -45,6 +45,6 @@ export async function request (resource: string, signal: AbortSignal) {
  * @param {string} hostname
  * @param {string} recordType
  */
-export function getCacheKey (hostname: string, recordType: string) {
+export function getCacheKey (hostname: string, recordType: string): string {
   return `${recordType}_${hostname}`
 }
