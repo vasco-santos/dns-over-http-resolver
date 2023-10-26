@@ -17,15 +17,11 @@
     "doh",
     "http"
   ],
-  "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=7.0.0"
-  },
   "type": "module",
   "types": "./dist/src/index.d.ts",
   "files": [
     "src",
-    "dist/src",
+    "dist",
     "!dist/test",
     "!**/*.tsbuildinfo"
   ],
@@ -38,6 +34,7 @@
   "eslintConfig": {
     "extends": "ipfs",
     "parserOptions": {
+      "project": true,
       "sourceType": "module"
     }
   },
@@ -68,15 +65,15 @@
               "release": "patch"
             },
             {
-              "type": "chore",
-              "release": "patch"
-            },
-            {
               "type": "docs",
               "release": "patch"
             },
             {
               "type": "test",
+              "release": "patch"
+            },
+            {
+              "type": "deps",
               "release": "patch"
             },
             {
@@ -134,7 +131,8 @@
     "lint": "aegir lint",
     "release": "aegir release",
     "build": "aegir build",
-    "dep-check": "aegir dep-check"
+    "dep-check": "aegir dep-check",
+    "docs": "aegir docs"
   },
   "dependencies": {
     "debug": "^4.3.1",
@@ -145,8 +143,6 @@
   "devDependencies": {
     "@types/debug": "^4.1.7",
     "aegir": "^41.0.11",
-    "sinon": "^17.0.0",
-    "ts-sinon": "^2.0.2",
-    "util": "^0.12.3"
+    "sinon": "^17.0.0"
   }
 }

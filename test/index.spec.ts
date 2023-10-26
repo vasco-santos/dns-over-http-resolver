@@ -1,9 +1,9 @@
 /* eslint-env mocha */
 import { expect } from 'aegir/chai'
 // import * as utils from '../src/utils.js'
+import sinon from 'sinon'
 import DnsOverHttpResolver from '../src/index.js'
 import type { DNSJSON } from '../src/utils.js'
-import sinon from 'sinon'
 import type { SinonStub } from 'sinon'
 
 // const getFetchPair = () => [utils, 'fetch']
@@ -264,8 +264,8 @@ describe('dns-over-http-resolver', () => {
   it('cancels an in-flight DNS request', async () => {
     const hostname = 'example.com'
 
-    const request = async (host: string, signal: AbortSignal) => {
-      return await new Promise<DNSJSON>((resolve, reject) => {
+    const request = async (host: string, signal: AbortSignal): Promise<DNSJSON> => {
+      return new Promise<DNSJSON>((resolve, reject) => {
         signal.addEventListener('abort', () => {
           reject(new Error('aborted'))
         })
