@@ -1,5 +1,3 @@
-import { fetch as nativeFetch, Headers } from 'native-fetch'
-
 /**
  * Build fetch resource for request
  */
@@ -28,7 +26,7 @@ interface Answer {
  * Use fetch to find the record
  */
 export async function request (resource: string, signal: AbortSignal): Promise<DNSJSON> {
-  const req = await nativeFetch(resource, {
+  const req = await fetch(resource, {
     headers: new Headers({
       accept: 'application/dns-json'
     }),
