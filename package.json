@@ -135,10 +135,9 @@
     "docs": "aegir docs"
   },
   "dependencies": {
-    "debug": "^4.3.1",
+    "debug": "^4.3.4",
     "native-fetch": "^4.0.2",
-    "receptacle": "^1.3.2",
-    "undici": "^5.12.0"
+    "receptacle": "^1.3.2"
   },
   "devDependencies": {
     "@types/debug": "^4.1.7",
