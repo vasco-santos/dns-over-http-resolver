@@ -1,3 +1,14 @@
+## [3.0.0](https://github.com/vasco-santos/dns-over-http-resolver/compare/v2.1.3...v3.0.0) (2023-11-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* requires node 18+
+
+### Bug Fixes
+
+* use native fetch API ([#104](https://github.com/vasco-santos/dns-over-http-resolver/issues/104)) ([58453c7](https://github.com/vasco-santos/dns-over-http-resolver/commit/58453c70f04977ca16feb8edd0d12ce453d57f85))
+
 ## [2.1.3](https://github.com/vasco-santos/dns-over-http-resolver/compare/v2.1.2...v2.1.3) (2023-10-26)
 
 
