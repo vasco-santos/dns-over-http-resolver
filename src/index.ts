@@ -14,6 +14,20 @@ interface ResolverOptions {
   request?: Request
 }
 
+type RecordTypes = 'A' | 'AAAA' | 'TXT'
+
+interface DNSResolver<T> {
+  hostname: string
+  recordType: RecordTypes
+  cache?: Receptacle<T[], undefined>
+}
+
+const RECORD_EXTRACTORS: Record<RecordTypes, (input: DNSJSON['Answer'][0]) => string | string[]> = {
+  A: ({ data }): string => data,
+  AAAA: ({ data }): string => data,
+  TXT: ({ data }): string[] => [data.replace(/['"]+/g, '')]
+}
+
 /**
  * DNS over HTTP resolver.
  * Uses a list of servers to resolve DNS records with HTTP requests.
@@ -112,48 +126,10 @@ class Resolver {
    * @param {string} hostname - host name to resolve
    */
   async resolve4 (hostname: string): Promise<string[]> {
-    const recordType = 'A'
-    const cached = this._cache.get(utils.getCacheKey(hostname, recordType))
-    if (cached != null) {
-      return cached
-    }
-    let aborted = false
-
-    for (const server of this._getShuffledServers()) {
-      const controller = new AbortController()
-      this._abortControllers.push(controller)
-
-      try {
-        const response = await this._request(utils.buildResource(
-          server,
-          hostname,
-          recordType
-        ), controller.signal)
-
-        const data = response.Answer.map(a => a.data)
-        const ttl = Math.min(...response.Answer.map(a => a.TTL))
-
-        this._cache.set(utils.getCacheKey(hostname, recordType), data, { ttl })
-
-        return data
-      } catch (err) {
-        if (controller.signal.aborted) {
-          aborted = true
-        }
-
-        log.error(`${server} could not resolve ${hostname} record ${recordType}`)
-      } finally {
-        this._abortControllers = this._abortControllers.filter(c => c !== controller)
-      }
-    }
-
-    if (aborted) {
-      throw Object.assign(new Error('queryA ECANCELLED'), {
-        code: 'ECANCELLED'
-      })
-    }
-
-    throw new Error(`Could not resolve ${hostname} record ${recordType}`)
+    return this.resolveAny({
+      hostname,
+      recordType: 'A'
+    })
   }
 
   /**
@@ -162,48 +138,10 @@ class Resolver {
    * @param {string} hostname - host name to resolve
    */
   async resolve6 (hostname: string): Promise<string[]> {
-    const recordType = 'AAAA'
-    const cached = this._cache.get(utils.getCacheKey(hostname, recordType))
-    if (cached != null) {
-      return cached
-    }
-    let aborted = false
-
-    for (const server of this._getShuffledServers()) {
-      const controller = new AbortController()
-      this._abortControllers.push(controller)
-
-      try {
-        const response = await this._request(utils.buildResource(
-          server,
-          hostname,
-          recordType
-        ), controller.signal)
-
-        const data = response.Answer.map(a => a.data)
-        const ttl = Math.min(...response.Answer.map(a => a.TTL))
-
-        this._cache.set(utils.getCacheKey(hostname, recordType), data, { ttl })
-
-        return data
-      } catch (err) {
-        if (controller.signal.aborted) {
-          aborted = true
-        }
-
-        log.error(`${server} could not resolve ${hostname} record ${recordType}`)
-      } finally {
-        this._abortControllers = this._abortControllers.filter(c => c !== controller)
-      }
-    }
-
-    if (aborted) {
-      throw Object.assign(new Error('queryAaaa ECANCELLED'), {
-        code: 'ECANCELLED'
-      })
-    }
-
-    throw new Error(`Could not resolve ${hostname} record ${recordType}`)
+    return this.resolveAny({
+      hostname,
+      recordType: 'AAAA'
+    })
   }
 
   /**
@@ -212,8 +150,34 @@ class Resolver {
    * @param {string} hostname - host name to resolve
    */
   async resolveTxt (hostname: string): Promise<string[][]> {
-    const recordType = 'TXT'
-    const cached = this._TXTcache.get(utils.getCacheKey(hostname, recordType))
+    return this.resolveAny({
+      hostname,
+      recordType: 'TXT',
+      cache: this._TXTcache
+    })
+  }
+
+  /**
+   * Resolves any record type.
+   *
+   * @param DNSResolver<T> - DNSResolver object
+   */
+  private async resolveAny ({
+    hostname,
+    recordType,
+    cache
+  }: DNSResolver<string>): Promise<string[]>
+  private async resolveAny ({
+    hostname,
+    recordType,
+    cache
+  }: DNSResolver<string[]>): Promise<string[][]>
+  private async resolveAny ({
+    hostname,
+    recordType,
+    cache = this._cache
+  }: DNSResolver<string | string[]>): Promise<Array<string | string[]>> {
+    const cached = cache.get(utils.getCacheKey(hostname, recordType))
     if (cached != null) {
       return cached
     }
@@ -230,10 +194,10 @@ class Resolver {
           recordType
         ), controller.signal)
 
-        const data = response.Answer.map(a => [a.data.replace(/['"]+/g, '')])
+        const data = response.Answer.map(RECORD_EXTRACTORS[recordType])
         const ttl = Math.min(...response.Answer.map(a => a.TTL))
 
-        this._TXTcache.set(utils.getCacheKey(hostname, recordType), data, { ttl })
+        cache.set(utils.getCacheKey(hostname, recordType), data, { ttl })
 
         return data
       } catch (err) {
@@ -248,7 +212,7 @@ class Resolver {
     }
 
     if (aborted) {
-      throw Object.assign(new Error('queryTxt ECANCELLED'), {
+      throw Object.assign(new Error(`query${recordType} ECANCELLED`), {
         code: 'ECANCELLED'
       })
     }
@@ -256,6 +220,9 @@ class Resolver {
     throw new Error(`Could not resolve ${hostname} record ${recordType}`)
   }
 
+  /**
+   * Clears the cache.
+   */
   clearCache (): void {
     this._cache.clear()
     this._TXTcache.clear()
