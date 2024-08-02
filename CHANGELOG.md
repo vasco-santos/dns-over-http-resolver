@@ -1,3 +1,15 @@
+## [3.0.3](https://github.com/vasco-santos/dns-over-http-resolver/compare/v3.0.2...v3.0.3) (2024-08-02)
+
+### Bug Fixes
+
+* remove cjs deps ([#116](https://github.com/vasco-santos/dns-over-http-resolver/issues/116)) ([df1d6f6](https://github.com/vasco-santos/dns-over-http-resolver/commit/df1d6f68316ab4f1bc421762225d2e4beda75166))
+
+### Dependencies
+
+* **dev:** bump aegir from 42.2.11 to 43.0.1 ([#114](https://github.com/vasco-santos/dns-over-http-resolver/issues/114)) ([bf396fe](https://github.com/vasco-santos/dns-over-http-resolver/commit/bf396fe4796a995a4c82b298f5f994c5819242c4))
+* **dev:** bump aegir from 43.0.3 to 44.0.0 ([#115](https://github.com/vasco-santos/dns-over-http-resolver/issues/115)) ([ff0a161](https://github.com/vasco-santos/dns-over-http-resolver/commit/ff0a1615e25c6cc4832ca12b5ddc5dc9a5c8e40b))
+* **dev:** bump sinon from 17.0.2 to 18.0.0 ([#112](https://github.com/vasco-santos/dns-over-http-resolver/issues/112)) ([e2da10b](https://github.com/vasco-santos/dns-over-http-resolver/commit/e2da10bac2118a62934213aa1de6fad7499c1f1e))
+
 ## [3.0.2](https://github.com/vasco-santos/dns-over-http-resolver/compare/v3.0.1...v3.0.2) (2024-01-12)
 
 
