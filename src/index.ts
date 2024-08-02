@@ -1,5 +1,5 @@
-import debug from 'debug'
-import Receptacle from 'receptacle'
+import QuickLRU from 'quick-lru'
+import debug from 'weald'
 import * as utils from './utils.js'
 import type { DNSJSON } from './utils'
 
@@ -19,8 +19,8 @@ interface ResolverOptions {
  * Uses a list of servers to resolve DNS records with HTTP requests.
  */
 class Resolver {
-  private readonly _cache: Receptacle<string[]>
-  private readonly _TXTcache: Receptacle<string[][]>
+  private readonly _cache: QuickLRU<string, string[]>
+  private readonly _TXTcache: QuickLRU<string, string[][]>
   private _servers: string[]
   private readonly _request: Request
   private _abortControllers: AbortController[]
@@ -32,8 +32,8 @@ class Resolver {
    * @param {Request} [options.request] - function to return DNSJSON
    */
   constructor (options: ResolverOptions = {}) {
-    this._cache = new Receptacle({ max: options?.maxCache ?? 100 })
-    this._TXTcache = new Receptacle({ max: options?.maxCache ?? 100 })
+    this._cache = new QuickLRU({ maxSize: options?.maxCache ?? 100 })
+    this._TXTcache = new QuickLRU({ maxSize: options?.maxCache ?? 100 })
     this._servers = [
       'https://cloudflare-dns.com/dns-query',
       'https://dns.google/resolve'
@@ -133,7 +133,7 @@ class Resolver {
         const data = response.Answer.map(a => a.data)
         const ttl = Math.min(...response.Answer.map(a => a.TTL))
 
-        this._cache.set(utils.getCacheKey(hostname, recordType), data, { ttl })
+        this._cache.set(utils.getCacheKey(hostname, recordType), data, { maxAge: ttl })
 
         return data
       } catch (err) {
@@ -183,7 +183,7 @@ class Resolver {
         const data = response.Answer.map(a => a.data)
         const ttl = Math.min(...response.Answer.map(a => a.TTL))
 
-        this._cache.set(utils.getCacheKey(hostname, recordType), data, { ttl })
+        this._cache.set(utils.getCacheKey(hostname, recordType), data, { maxAge: ttl })
 
         return data
       } catch (err) {
@@ -233,7 +233,7 @@ class Resolver {
         const data = response.Answer.map(a => [a.data.replace(/['"]+/g, '')])
         const ttl = Math.min(...response.Answer.map(a => a.TTL))
 
-        this._TXTcache.set(utils.getCacheKey(hostname, recordType), data, { ttl })
+        this._TXTcache.set(utils.getCacheKey(hostname, recordType), data, { maxAge: ttl })
 
         return data
       } catch (err) {
