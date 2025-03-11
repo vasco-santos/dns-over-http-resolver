@@ -1,3 +1,9 @@
+## [3.0.8](https://github.com/vasco-santos/dns-over-http-resolver/compare/v3.0.7...v3.0.8) (2025-03-11)
+
+### Dependencies
+
+* **dev:** bump aegir from 45.1.2 to 45.1.3 ([#127](https://github.com/vasco-santos/dns-over-http-resolver/issues/127)) ([a5d1eb4](https://github.com/vasco-santos/dns-over-http-resolver/commit/a5d1eb4a121cec85c1c253eff1f39918e8959453))
+
 ## [3.0.7](https://github.com/vasco-santos/dns-over-http-resolver/compare/v3.0.6...v3.0.7) (2025-02-28)
 
 ### Dependencies
