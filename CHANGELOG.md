@@ -1,3 +1,9 @@
+## [3.0.10](https://github.com/vasco-santos/dns-over-http-resolver/compare/v3.0.9...v3.0.10) (2025-03-24)
+
+### Dependencies
+
+* **dev:** bump sinon from 19.0.2 to 19.0.4 ([#129](https://github.com/vasco-santos/dns-over-http-resolver/issues/129)) ([4a66a44](https://github.com/vasco-santos/dns-over-http-resolver/commit/4a66a44246de3f660699298beb4247950379f7e2))
+
 ## [3.0.9](https://github.com/vasco-santos/dns-over-http-resolver/compare/v3.0.8...v3.0.9) (2025-03-20)
 
 ### Dependencies
