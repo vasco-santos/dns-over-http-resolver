@@ -1,3 +1,9 @@
+## [3.0.13](https://github.com/vasco-santos/dns-over-http-resolver/compare/v3.0.12...v3.0.13) (2025-04-30)
+
+### Dependencies
+
+* bump quick-lru from 7.0.0 to 7.0.1 ([#131](https://github.com/vasco-santos/dns-over-http-resolver/issues/131)) ([577f4ad](https://github.com/vasco-santos/dns-over-http-resolver/commit/577f4ade951bd97812c52fb64bddde9bf497b381))
+
 ## [3.0.12](https://github.com/vasco-santos/dns-over-http-resolver/compare/v3.0.11...v3.0.12) (2025-04-29)
 
 ### Dependencies
