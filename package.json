@@ -1,6 +1,6 @@
 {
   "name": "dns-over-http-resolver",
-  "version": "3.0.13",
+  "version": "3.0.14",
   "description": "DNS over HTTP resolver",
   "author": "Vasco Santos",
   "license": "Apache-2.0 OR MIT",
