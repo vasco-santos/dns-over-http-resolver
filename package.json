@@ -139,7 +139,7 @@
     "weald": "^1.0.2"
   },
   "devDependencies": {
-    "@types/sinon": "^17.0.3",
+    "@types/sinon": "^21.0.0",
     "aegir": "^46.0.0",
     "sinon": "^21.0.0"
   }
