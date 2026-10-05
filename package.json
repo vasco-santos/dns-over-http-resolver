@@ -15,9 +15,11 @@
   "keywords": [
     "dns",
     "doh",
+    "dns-over-https",
     "http"
   ],
   "type": "module",
+  "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
   "files": [
     "src",
@@ -26,9 +28,10 @@
     "!**/*.tsbuildinfo"
   ],
   "exports": {
+    "./package.json": "./package.json",
     ".": {
       "types": "./dist/src/index.d.ts",
-      "import": "./dist/src/index.js"
+      "default": "./dist/src/index.js"
     }
   },
   "eslintConfig": {
